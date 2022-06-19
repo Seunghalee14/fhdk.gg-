@@ -6,9 +6,9 @@ import {
   Marker,
   Popup,
   TileLayer,
-  ZoomControl,  
+  ZoomControl,
 } from "react-leaflet";
-import L from 'leaflet';
+import L from "leaflet";
 import { useAppSelector, useAppDispatch } from "store";
 import TextIcon from "./map/textMarker";
 import API from "api";
@@ -50,7 +50,6 @@ function makeid(length) {
   }
   return result;
 }
-
 
 function MapView({ server, reports }) {
   const [map, setMap] = useState();
@@ -259,7 +258,7 @@ function MapView({ server, reports }) {
 
   function handlerPin(continent) {
     dispatch(setMenuContinent(continent));
-  }  
+  }
   useEffect(() => {
     if (reports && map) {
       if (size.width < 768) {
@@ -276,7 +275,7 @@ function MapView({ server, reports }) {
           })
         );
         setRandomString(makeid(10));
-      } else {        
+      } else {
         const offset = map.getSize().x * -0.0049;
         const offsety = map.getSize().y * -0.0099;
         setMapCenter([offset, offsety]);
@@ -295,38 +294,38 @@ function MapView({ server, reports }) {
   }, [reports]);
 
   const handleTerritory = useCallback((data) => {
-    if(map){
-        if (size.width < 768) {
-            const offset = map.getSize().x * -0.0049;
-            const offsety = map.getSize().y * -0.0099;
-            setMapCenter([offset, offsety]);
-            setRandomString(makeid(15));
-            dispatch(setMapUrl(data.image));
-            setMapTerritoryVisible(true);
-            dispatch(
-              setZoom({
-                default: 0,
-                minZoom: 3,
-                maxZoom: 3,
-              })
-            );
-          } else {
-            const offset = map.getSize().x * -0.0049;
-            const offsety = map.getSize().y * -0.0099;
-            setMapCenter([offset, offsety]);
-            setRandomString(makeid(15));
-            dispatch(setMapUrl(data.image));
-            setMapTerritoryVisible(true);
-      
-            dispatch(
-              setZoom({
-                default: 0,
-                minZoom: 3,
-                maxZoom: 3,
-              })
-            );
-          }
-    }    
+    if (map) {
+      if (size.width < 768) {
+        const offset = map.getSize().x * -0.0049;
+        const offsety = map.getSize().y * -0.0099;
+        setMapCenter([offset, offsety]);
+        setRandomString(makeid(15));
+        dispatch(setMapUrl(data.image));
+        setMapTerritoryVisible(true);
+        dispatch(
+          setZoom({
+            default: 0,
+            minZoom: 3,
+            maxZoom: 3,
+          })
+        );
+      } else {
+        const offset = map.getSize().x * -0.0049;
+        const offsety = map.getSize().y * -0.0099;
+        setMapCenter([offset, offsety]);
+        setRandomString(makeid(15));
+        dispatch(setMapUrl(data.image));
+        setMapTerritoryVisible(true);
+
+        dispatch(
+          setZoom({
+            default: 0,
+            minZoom: 3,
+            maxZoom: 3,
+          })
+        );
+      }
+    }
   });
 
   const handleOriginmap = useCallback(() => {
@@ -342,7 +341,7 @@ function MapView({ server, reports }) {
         maxZoom: 5,
       })
     );
-  });  
+  });
   return (
     <>
       {mapTerritoryVisible && (
@@ -378,7 +377,7 @@ function MapView({ server, reports }) {
       >
         <MapContainer
           className="loa-map"
-          center={mapCenter}      
+          center={mapCenter}
           zoom={mapInfo.zoom.default}
           minZoom={mapInfo.zoom.minZoom}
           maxZoom={mapInfo.zoom.maxZoom}
@@ -395,8 +394,8 @@ function MapView({ server, reports }) {
           onKeyDown={(e) => {
             mapTerritoryVisible && escFunction(e);
           }}
-        >          
-          <TileLayer noWrap={true} url={mapUrl} key={mapUrl}/>
+        >
+          <TileLayer noWrap={true} url={mapUrl} key={mapUrl} />
           {!mapTerritoryVisible &&
             lostarkData.length > 0 &&
             lostarkData.map((continent) => (

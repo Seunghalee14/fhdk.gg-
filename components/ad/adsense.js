@@ -20,8 +20,8 @@ export default function AdBanner(props) {
       }}
       data-ad-format={auto ? "auto" : ""}
       data-full-width-responsive="true"
-      data-ad-client="ca-pub-3163303127956008"
-      data-ad-slot="9661520020"
+      data-ad-client="ca-pub-4983028235724050"
+      data-ad-slot="7269819074"
     />
   );
 }
